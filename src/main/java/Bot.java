@@ -19,6 +19,27 @@ public class Bot extends TelegramLongPollingBot {
             .keyboardRow(List.of(buttonForStart))
             .build();
 
+    // button for category
+    private InlineKeyboardButton buttonForCategories = InlineKeyboardButton.builder()
+            .text("Перейти в категории")
+            .callbackData("категории")
+            .build();
+
+    // button for basket of user
+    private InlineKeyboardButton buttonForMyBasket = InlineKeyboardButton.builder()
+            .text("Моя корзина")
+            .callbackData("корзина")
+            .build();
+
+    private InlineKeyboardMarkup keyboardForMenu = new InlineKeyboardMarkup().builder()
+            .keyboardRow(List.of(buttonForCategories))
+            .keyboardRow(List.of(buttonForMyBasket))
+            .build();
+
+    
+
+
+
     @Override
     public void onUpdateReceived(Update update) {
         forWorkWithText(update);
@@ -54,6 +75,12 @@ public class Bot extends TelegramLongPollingBot {
                     .messageId(messageId)
                     .text("")
                     .build();
+
+            if (callbackData.equals(buttonForStart.getCallbackData())) {
+                editMessageText.setText("Выберите пункт меню");
+                editMessageText.setReplyMarkup(keyboardForMenu);
+            }
+
 
             try {
                 execute(editMessageText);
