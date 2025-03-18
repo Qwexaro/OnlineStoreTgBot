@@ -137,8 +137,6 @@ public class Bot extends TelegramLongPollingBot {
                 }
             }
 
-
-
             try {
                 execute(editMessageText);
             } catch (Exception ex) {
@@ -149,11 +147,11 @@ public class Bot extends TelegramLongPollingBot {
 
     @Override
     public String getBotUsername() {
-        return "@dajva324bot";
+        return "user of bot";
     }
 
     @Override
     public String getBotToken() {
-        return "7569642086:AAHZgGLmMoI0lYApX--tyemCpOH7oIyX-YI";
+        return "you bot token";
     }
 }
