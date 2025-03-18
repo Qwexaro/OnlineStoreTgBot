@@ -1,5 +1,6 @@
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
@@ -44,7 +45,21 @@ public class Bot extends TelegramLongPollingBot {
 
     public void forWorkWithButtons(Update update) {
         if (update.hasCallbackQuery()) {
+            String callbackData = update.getCallbackQuery().getData();
+            Long chatId = update.getCallbackQuery().getMessage().getChatId();
+            Integer messageId = update.getCallbackQuery().getMessage().getMessageId();
 
+            EditMessageText editMessageText = EditMessageText.builder()
+                    .chatId(chatId)
+                    .messageId(messageId)
+                    .text("")
+                    .build();
+
+            try {
+                execute(editMessageText);
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
         }
     }
 
