@@ -1,10 +1,13 @@
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
+import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 
+import java.io.File;
 import java.util.List;
 
 public class Bot extends TelegramLongPollingBot {
@@ -61,6 +64,15 @@ public class Bot extends TelegramLongPollingBot {
             .keyboardRow(List.of(buttonForLiquidCollagen))
             .build();
 
+    private InlineKeyboardButton buttonForBLACKMORESCollagenDrink = InlineKeyboardButton.builder()
+            .text("BLACKMORES Collagen питьевой")
+            .callbackData("collagen BLACKMORES")
+            .build();
+
+
+    private InlineKeyboardMarkup keyboardForDrinkCollagen = InlineKeyboardMarkup.builder()
+            .keyboardRow(List.of(buttonForBLACKMORESCollagenDrink))
+            .build();
 
     @Override
     public void onUpdateReceived(Update update) {
@@ -104,7 +116,27 @@ public class Bot extends TelegramLongPollingBot {
             } else if (callbackData.equals(buttonForCategories.getCallbackData())) {
                 editMessageText.setText("Выберите категории");
                 editMessageText.setReplyMarkup(keyboardForAllCategories);
+            } else if (callbackData.equals(buttonForLiquidCollagen.getCallbackData())) {
+                editMessageText.setText("Выберите товар");
+                editMessageText.setReplyMarkup(keyboardForDrinkCollagen);
+            } else if (callbackData.equals(buttonForBLACKMORESCollagenDrink.getCallbackData())) {
+                SendPhoto sendPhoto = new SendPhoto();
+                sendPhoto.setChatId(chatId);
+                sendPhoto.setCaption(buttonForBLACKMORESCollagenDrink.getText());
+                sendPhoto.setPhoto(
+                        new InputFile(
+                                new File("src/main/resources/data/black.jpg")
+                        )
+
+                );
+
+                try {
+                    execute(sendPhoto);
+                } catch (Exception ex) {
+                    System.out.println(ex.getMessage());
+                }
             }
+
 
 
             try {
