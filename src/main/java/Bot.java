@@ -101,6 +101,9 @@ public class Bot extends TelegramLongPollingBot {
             if (callbackData.equals(buttonForStart.getCallbackData())) {
                 editMessageText.setText("Выберите пункт меню");
                 editMessageText.setReplyMarkup(keyboardForMenu);
+            } else if(callbackData.equals(buttonForCategories.getCallbackData())){
+                editMessageText.setText("Выберите категории");
+                editMessageText.setReplyMarkup(keyboardForAllCategories);
             }
 
 
