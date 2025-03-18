@@ -36,8 +36,30 @@ public class Bot extends TelegramLongPollingBot {
             .keyboardRow(List.of(buttonForMyBasket))
             .build();
 
-    
 
+    // button for category
+    private InlineKeyboardButton buttonForLiquidCollagen = InlineKeyboardButton.builder()
+            .text("Питьевой коллаген")
+            .callbackData("питьевой коллаген")
+            .build();
+
+    // button for basket of user
+    private InlineKeyboardButton buttonForPowderCollagen = InlineKeyboardButton.builder()
+            .text("Коллаген в порошке")
+            .callbackData("коллаген в порошке")
+            .build();
+
+
+    private InlineKeyboardButton buttonForTabletsCollagen = InlineKeyboardButton.builder()
+            .text("Коллаген в таблетках")
+            .callbackData("коллаген в таблетках")
+            .build();
+
+    private InlineKeyboardMarkup keyboardForAllCategories = InlineKeyboardMarkup.builder()
+            .keyboardRow(List.of(buttonForTabletsCollagen))
+            .keyboardRow(List.of(buttonForPowderCollagen))
+            .keyboardRow(List.of(buttonForLiquidCollagen))
+            .build();
 
 
     @Override
