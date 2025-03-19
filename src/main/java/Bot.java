@@ -69,10 +69,37 @@ public class Bot extends TelegramLongPollingBot {
             .callbackData("collagen BLACKMORES")
             .build();
 
+    private InlineKeyboardButton buttonForWHITEMORISColagenDrink = InlineKeyboardButton.builder()
+            .text("WHITEMORES Collagen питьевой")
+            .callbackData("collagen WHITEMORES")
+            .build();
+
+    private InlineKeyboardButton buttonForGREENMORISColagenDrink = InlineKeyboardButton.builder()
+            .text("GreenMORES Collagen питьевой")
+            .callbackData("collagen GREENMORES")
+            .build();
+
+
+    private InlineKeyboardButton buttonForPurpleMORISColagenDrink = InlineKeyboardButton.builder()
+            .text("PurpleMORES Collagen питьевой")
+            .callbackData("collagen PurpleMORES")
+            .build();
+
+    private InlineKeyboardButton buttonForOrangeMORISColagenDrink = InlineKeyboardButton.builder()
+            .text("OrangeMORES Collagen питьевой")
+            .callbackData("collagen ORANGEMORES")
+            .build();
+
+
 
     private InlineKeyboardMarkup keyboardForDrinkCollagen = InlineKeyboardMarkup.builder()
             .keyboardRow(List.of(buttonForBLACKMORESCollagenDrink))
+            .keyboardRow(List.of(buttonForWHITEMORISColagenDrink))
+            .keyboardRow(List.of(buttonForGREENMORISColagenDrink))
+            .keyboardRow(List.of(buttonForPurpleMORISColagenDrink))
+            .keyboardRow(List.of(buttonForOrangeMORISColagenDrink))
             .build();
+
 
     @Override
     public void onUpdateReceived(Update update) {
@@ -136,6 +163,78 @@ public class Bot extends TelegramLongPollingBot {
                     System.out.println(ex.getMessage());
                 }
             }
+            else if(callbackData.equals(buttonForOrangeMORISColagenDrink.getCallbackData())){
+                SendPhoto sendPhoto = new SendPhoto();
+                sendPhoto.setChatId(chatId);
+                sendPhoto.setCaption(buttonForOrangeMORISColagenDrink.getText());
+                sendPhoto.setPhoto(
+                        new InputFile(
+                                new File("src/main/resources/data/OrangeMories.jpg")
+                        )
+
+                );
+
+                try {
+                    execute(sendPhoto);
+                } catch (Exception ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
+
+            else if(callbackData.equals(buttonForWHITEMORISColagenDrink.getCallbackData())){
+                SendPhoto sendPhoto = new SendPhoto();
+                sendPhoto.setChatId(chatId);
+                sendPhoto.setCaption(buttonForWHITEMORISColagenDrink.getText());
+                sendPhoto.setPhoto(
+                        new InputFile(
+                                new File("src/main/resources/data/Caallagens.webp")
+                        )
+
+                );
+
+                try {
+                    execute(sendPhoto);
+                } catch (Exception ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
+
+            else if(callbackData.equals(buttonForGREENMORISColagenDrink.getCallbackData())){
+                SendPhoto sendPhoto = new SendPhoto();
+                sendPhoto.setChatId(chatId);
+                sendPhoto.setCaption(buttonForGREENMORISColagenDrink.getText());
+                sendPhoto.setPhoto(
+                        new InputFile(
+                                new File("src/main/resources/data/GreenCallagen.jpg")
+                        )
+
+                );
+
+                try {
+                    execute(sendPhoto);
+                } catch (Exception ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
+
+
+            else if(callbackData.equals(buttonForPurpleMORISColagenDrink.getCallbackData())){
+                SendPhoto sendPhoto = new SendPhoto();
+                sendPhoto.setChatId(chatId);
+                sendPhoto.setCaption(buttonForPurpleMORISColagenDrink.getText());
+                sendPhoto.setPhoto(
+                        new InputFile(
+                                new File("src/main/resources/data/PurpleMories.jpg")
+                        )
+
+                );
+
+                try {
+                    execute(sendPhoto);
+                } catch (Exception ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
 
             try {
                 execute(editMessageText);
@@ -147,11 +246,11 @@ public class Bot extends TelegramLongPollingBot {
 
     @Override
     public String getBotUsername() {
-        return "user of bot";
+        return "@dajva324bot";
     }
 
     @Override
     public String getBotToken() {
-        return "you bot token";
+        return "7569642086:AAHZgGLmMoI0lYApX--tyemCpOH7oIyX-YI";
     }
 }
