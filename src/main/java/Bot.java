@@ -100,7 +100,6 @@ public class Bot extends TelegramLongPollingBot {
             .build();
 
 
-
     private InlineKeyboardMarkup keyboardForDrinkCollagen = InlineKeyboardMarkup.builder()
             .keyboardRow(List.of(buttonForBLACKMORESCollagenDrink))
             .keyboardRow(List.of(buttonForWHITEMORISColagenDrink))
@@ -109,6 +108,44 @@ public class Bot extends TelegramLongPollingBot {
             .keyboardRow(List.of(buttonForOrangeMORISColagenDrink))
             .build();
 
+
+    private InlineKeyboardButton buttonForOrangePOROSHOCKColagen = InlineKeyboardButton.builder()
+            .text("Orange Collagen порошок")
+            .callbackData("collagen ORANGEPOROSHOCK")
+            .build();
+
+
+    private InlineKeyboardButton buttonForGreenPOROSHOCKColagen = InlineKeyboardButton.builder()
+            .text("Green Collagen порошок")
+            .callbackData("collagen GREENPOROSHOCK")
+            .build();
+
+
+    private InlineKeyboardButton buttonForPurplePOROSHOCKColagen = InlineKeyboardButton.builder()
+            .text("Purple Collagen порошок")
+            .callbackData("collagen PURPLEPOROSHOCK")
+            .build();
+
+
+    private InlineKeyboardButton buttonForWhitePOROSHOCKColagen = InlineKeyboardButton.builder()
+            .text("White Collagen порошок")
+            .callbackData("collagen WHITEPOROSHOCK")
+            .build();
+
+
+    private InlineKeyboardButton buttonForBlackPOROSHOCKColagen = InlineKeyboardButton.builder()
+            .text("Black Collagen порошок")
+            .callbackData("collagen BLACKPOROSHOCK")
+            .build();
+
+
+    private InlineKeyboardMarkup keyboardForPoroshockCollagen = InlineKeyboardMarkup.builder()
+            .keyboardRow(List.of(buttonForOrangePOROSHOCKColagen))
+            .keyboardRow(List.of(buttonForPurplePOROSHOCKColagen))
+            .keyboardRow(List.of(buttonForWhitePOROSHOCKColagen))
+            .keyboardRow(List.of(buttonForGreenPOROSHOCKColagen))
+            .keyboardRow(List.of(buttonForBlackPOROSHOCKColagen))
+            .build();
 
 
     @Override
@@ -135,12 +172,12 @@ public class Bot extends TelegramLongPollingBot {
         }
     }
 
-    public int forGetPriceCollagenWithSelectedCategory(String captionCollagen, String urlWebPageWithCategoryCollagen){
+    public int forGetPriceCollagenWithSelectedCategory(String captionCollagen, String urlWebPageWithCategoryCollagen) {
         int priceCollagen = 0;
-        try{
+        try {
             Document document = Jsoup.connect(urlWebPageWithLiquidCategoryCollagen).get();
             String strHtmlCode = String.valueOf(document);
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.getMessage();
         }
         return priceCollagen;
@@ -183,8 +220,7 @@ public class Bot extends TelegramLongPollingBot {
                 } catch (Exception ex) {
                     System.out.println(ex.getMessage());
                 }
-            }
-            else if(callbackData.equals(buttonForOrangeMORISColagenDrink.getCallbackData())){
+            } else if (callbackData.equals(buttonForOrangeMORISColagenDrink.getCallbackData())) {
                 SendPhoto sendPhoto = new SendPhoto();
                 sendPhoto.setChatId(chatId);
                 sendPhoto.setCaption(buttonForOrangeMORISColagenDrink.getText());
@@ -200,9 +236,7 @@ public class Bot extends TelegramLongPollingBot {
                 } catch (Exception ex) {
                     System.out.println(ex.getMessage());
                 }
-            }
-
-            else if(callbackData.equals(buttonForWHITEMORISColagenDrink.getCallbackData())){
+            } else if (callbackData.equals(buttonForWHITEMORISColagenDrink.getCallbackData())) {
                 SendPhoto sendPhoto = new SendPhoto();
                 sendPhoto.setChatId(chatId);
                 sendPhoto.setCaption(buttonForWHITEMORISColagenDrink.getText());
@@ -218,9 +252,7 @@ public class Bot extends TelegramLongPollingBot {
                 } catch (Exception ex) {
                     System.out.println(ex.getMessage());
                 }
-            }
-
-            else if(callbackData.equals(buttonForGREENMORISColagenDrink.getCallbackData())){
+            } else if (callbackData.equals(buttonForGREENMORISColagenDrink.getCallbackData())) {
                 SendPhoto sendPhoto = new SendPhoto();
                 sendPhoto.setChatId(chatId);
                 sendPhoto.setCaption(buttonForGREENMORISColagenDrink.getText());
@@ -236,10 +268,7 @@ public class Bot extends TelegramLongPollingBot {
                 } catch (Exception ex) {
                     System.out.println(ex.getMessage());
                 }
-            }
-
-
-            else if(callbackData.equals(buttonForPurpleMORISColagenDrink.getCallbackData())){
+            } else if (callbackData.equals(buttonForPurpleMORISColagenDrink.getCallbackData())) {
                 SendPhoto sendPhoto = new SendPhoto();
                 sendPhoto.setChatId(chatId);
                 sendPhoto.setCaption(buttonForPurpleMORISColagenDrink.getText());
@@ -257,12 +286,127 @@ public class Bot extends TelegramLongPollingBot {
                 }
             }
 
+        else if (callbackData.equals(buttonForPowderCollagen.getCallbackData())) {
+                editMessageText.setText("Выберите товар");
+                editMessageText.setReplyMarkup(keyboardForPoroshockCollagen);
+            }
+            else if (callbackData.equals(buttonForPurplePOROSHOCKColagen.getCallbackData())) {
+                SendPhoto sendPhoto = new SendPhoto();
+                sendPhoto.setChatId(chatId);
+                sendPhoto.setCaption(buttonForPurplePOROSHOCKColagen.getText());
+                sendPhoto.setPhoto(
+                        new InputFile(
+                                new File("src/main/resources/data/PurpleMories.jpg")
+                        )
+
+                );
+
+                try {
+                    execute(sendPhoto);
+                } catch (Exception ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
+
+            else if (callbackData.equals(buttonForWhitePOROSHOCKColagen.getCallbackData())) {
+                SendPhoto sendPhoto = new SendPhoto();
+                sendPhoto.setChatId(chatId);
+                sendPhoto.setCaption(buttonForWhitePOROSHOCKColagen.getText());
+                sendPhoto.setPhoto(
+                        new InputFile(
+                                new File("src/main/resources/data/Caalagens.jpg")
+                        )
+
+                );
+
+                try {
+                    execute(sendPhoto);
+                } catch (Exception ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
+
+
+            else if (callbackData.equals(buttonForPurplePOROSHOCKColagen.getCallbackData())) {
+                SendPhoto sendPhoto = new SendPhoto();
+                sendPhoto.setChatId(chatId);
+                sendPhoto.setCaption(buttonForPurplePOROSHOCKColagen.getText());
+                sendPhoto.setPhoto(
+                        new InputFile(
+                                new File("src/main/resources/data/PurpleMories.jpg")
+                        )
+
+                );
+
+                try {
+                    execute(sendPhoto);
+                } catch (Exception ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
+
+            else if (callbackData.equals(buttonForGreenPOROSHOCKColagen.getCallbackData())) {
+                SendPhoto sendPhoto = new SendPhoto();
+                sendPhoto.setChatId(chatId);
+                sendPhoto.setCaption(buttonForGreenPOROSHOCKColagen.getText());
+                sendPhoto.setPhoto(
+                        new InputFile(
+                                new File("src/main/resources/data/GreenCallagen.jpg")
+                        )
+
+                );
+
+                try {
+                    execute(sendPhoto);
+                } catch (Exception ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
+
+            else if (callbackData.equals(buttonForOrangePOROSHOCKColagen.getCallbackData())) {
+                SendPhoto sendPhoto = new SendPhoto();
+                sendPhoto.setChatId(chatId);
+                sendPhoto.setCaption(buttonForOrangePOROSHOCKColagen.getText());
+                sendPhoto.setPhoto(
+                        new InputFile(
+                                new File("src/main/resources/data/OrangeMories.jpg")
+                        )
+
+                );
+
+                try {
+                    execute(sendPhoto);
+                } catch (Exception ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
+
+            else if (callbackData.equals(buttonForBlackPOROSHOCKColagen.getCallbackData())) {
+                SendPhoto sendPhoto = new SendPhoto();
+                sendPhoto.setChatId(chatId);
+                sendPhoto.setCaption(buttonForBlackPOROSHOCKColagen.getText());
+                sendPhoto.setPhoto(
+                        new InputFile(
+                                new File("src/main/resources/data/black.jpg")
+                        )
+
+                );
+
+                try {
+                    execute(sendPhoto);
+                } catch (Exception ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
+
+
             try {
                 execute(editMessageText);
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());
             }
         }
+
     }
 
     @Override
