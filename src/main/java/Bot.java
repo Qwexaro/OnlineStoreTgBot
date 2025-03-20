@@ -1,3 +1,5 @@
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
@@ -7,11 +9,18 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 
+
 import java.io.File;
 import java.util.List;
 
 public class Bot extends TelegramLongPollingBot {
     // button for start
+
+
+    //URL категории жидкого коллагена
+    private String urlWebPageWithLiquidCategoryCollagen = "https://kollagen.life/product-category/pitevoj-kollagen";
+    //Путь к файлу с html-кодом
+    private String pathToFileWithHtmlCode = "src/main/resources/data/htmlCodeWebPage.html";
 
     private InlineKeyboardButton buttonForStart = InlineKeyboardButton.builder()
             .text("Нажмите для запуска")
@@ -101,6 +110,7 @@ public class Bot extends TelegramLongPollingBot {
             .build();
 
 
+
     @Override
     public void onUpdateReceived(Update update) {
         forWorkWithText(update);
@@ -123,6 +133,17 @@ public class Bot extends TelegramLongPollingBot {
                 System.out.println(ex.getMessage());
             }
         }
+    }
+
+    public int forGetPriceCollagenWithSelectedCategory(String captionCollagen, String urlWebPageWithCategoryCollagen){
+        int priceCollagen = 0;
+        try{
+            Document document = Jsoup.connect(urlWebPageWithLiquidCategoryCollagen).get();
+            String strHtmlCode = String.valueOf(document);
+        }catch (Exception ex){
+            ex.getMessage();
+        }
+        return priceCollagen;
     }
 
     public void forWorkWithButtons(Update update) {
@@ -251,6 +272,6 @@ public class Bot extends TelegramLongPollingBot {
 
     @Override
     public String getBotToken() {
-        return "7569642086:AAHZgGLmMoI0lYApX--tyemCpOH7oIyX-YI";
+        return "7569642086:AAEHFJqdxkGfLFwQSzEJy5oma5Os9X5h3kE";
     }
 }
