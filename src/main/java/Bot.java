@@ -327,6 +327,24 @@ public class Bot extends TelegramLongPollingBot {
             }
 
 
+            else if (callbackData.equals(buttonForWhitePOROSHOCKColagen.getCallbackData())) {
+                SendPhoto sendPhoto = new SendPhoto();
+                sendPhoto.setChatId(chatId);
+                sendPhoto.setCaption(buttonForWhitePOROSHOCKColagen.getText());
+                sendPhoto.setPhoto(
+                        new InputFile(
+                                new File("src/main/resources/data/Caalagens.jpg")
+                        )
+
+                );
+
+                try {
+                    execute(sendPhoto);
+                } catch (Exception ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
+
             else if (callbackData.equals(buttonForPurplePOROSHOCKColagen.getCallbackData())) {
                 SendPhoto sendPhoto = new SendPhoto();
                 sendPhoto.setChatId(chatId);
@@ -416,6 +434,6 @@ public class Bot extends TelegramLongPollingBot {
 
     @Override
     public String getBotToken() {
-        return "7569642086:AAEHFJqdxkGfLFwQSzEJy5oma5Os9X5h3kE";
+        return "7569642086:AAFo_emwlchv4TI6f7PiKXCMKvujnL8ExVI";
     }
 }
